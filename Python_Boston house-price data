@@ -9,3 +9,19 @@ from sklearn.datasets import load_boston
 
 boston = load_boston()
 boston.feature_names
+
+X = boston.data
+Y = boston.target
+
+x_train, x_test, y_train, y_test = train_test_split(X, Y, 
+                                                    test_size = 0.3,
+                                                    random_state= 87)
+regr = LinearRegression()
+regr.fit(x_train, y_train)
+y_predict = regr.predict(x_test)
+plt.scatter(y_test, y_predict)
+plt.plot([0,50], [0,50], 'r')
+plt.xlabel('True Price')
+plt.ylabel('False Price')
+
+print(boston.DESCR)
